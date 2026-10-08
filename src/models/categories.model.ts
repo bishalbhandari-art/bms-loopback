@@ -1,0 +1,37 @@
+import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Book} from './books.model';
+
+@model({
+  settings: {
+    postgresql: {
+      table: 'categories',
+    },
+  },
+})
+export class Category extends Entity {
+  @property({
+    type: 'number',
+    id: true,
+    generated: true,
+  })
+  category_id?: number;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  name: string;
+
+  @hasMany(() => Book, {keyTo: 'category_id'})
+  books?: Book[];
+
+  constructor(data?: Partial<Category>) {
+    super(data);
+  }
+}
+
+export interface CategoryRelations {
+  // describe navigational properties here
+}
+
+export type CategoryWithRelations = Category & CategoryRelations;
