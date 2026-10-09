@@ -50,7 +50,7 @@ export class AuthorControllerController {
     author: Omit<Author, 'author_id'>,
   ): Promise<Author> {
     // Use the injected provider to stamp the creation time
-    author.created_at = new Date(this.now());
+    author.created_at = this.now();
     return this.authorRepository.create(author);
   }
 

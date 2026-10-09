@@ -31,7 +31,7 @@ export class Author extends Entity {
   @property({
     type: 'date',
   })
-  created_at?: Date;
+  created_at?: string;
 
   @hasMany(() => Book, {keyTo: 'author_id'})
   books: Book[];

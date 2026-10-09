@@ -20,6 +20,14 @@ npm ci
 
 ## Run the application
 
+Configure the PostgreSQL connection in a local `.env` file. Start by copying
+`.env.example` to `.env`, then set `DB_PASSWORD` to the password for your local
+database. `.env` is ignored by Git, so keep real credentials there and do not
+commit them.
+
+The supported settings are `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, and
+`DB_NAME`.
+
 ```sh
 npm start
 ```
