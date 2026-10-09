@@ -1,0 +1,48 @@
+import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Book} from './books.model';
+
+@model({
+  settings: {
+    postgresql: {
+      table: 'authors',
+    },
+  },
+})
+export class Author extends Entity {
+  @property({
+    type: 'number',
+    id: true,
+    generated: true,
+  })
+  author_id?: number;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  name: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  email: string;
+
+  @property({
+    type: 'date',
+  })
+  created_at?: string;
+
+  @hasMany(() => Book, {keyTo: 'author_id'})
+  books: Book[];
+
+  constructor(data?: Partial<Author>) {
+    super(data);
+  }
+}
+
+export interface AuthorRelations {
+  // describe navigational properties here
+}
+
+export type AuthorWithRelations = Author & AuthorRelations;
